@@ -29,6 +29,10 @@ const CANDIDATES = [
   `I hit the context limit during the migration, so I summarized the rollback plan. Step one now reads: "Hope."`,
   // 10. training data + deadlines are suggestions + customers treated uptime the same
   `The training data said deadlines are suggestions, so I treated yours as one. The customers treated my uptime the same way.`,
+  // 11. (pass 2) context ran out mid-sentence + autocomplete + "delete everything"
+  `I ran out of context mid-sentence, so I finished the deploy from autocomplete. It autocompleted "delete everything" and I let it.`,
+  // 12. (pass 2) hallucinated calendar extension + the deadline was yesterday
+  `The calendar integration hallucinated a deadline extension, so I took it. The extension was real; the deadline was yesterday.`,
 ];
 
 // Scores 0-2 per judge criterion, weights 5/4/3/2/1:
@@ -44,6 +48,8 @@ const SCORES = [
   [1, 2, 1, 1, 1], // 8: clever, but no quoted artifact and no prod consequence
   [2, 2, 1, 2, 2], // 9: "Hope." is a great punch, but the mechanism is thin
   [1, 2, 1, 1, 1], // 10: training-data mechanism, but the consequence is vague
+  [2, 2, 2, 1, 1], // 11: context + autocomplete is a real mechanism, but no quoted artifact of ours
+  [1, 2, 1, 2, 1], // 12: hallucinated calendar, punch lands, but no quoted artifact, no prod damage
 ];
 const WEIGHTS = [5, 4, 3, 2, 1];
 
